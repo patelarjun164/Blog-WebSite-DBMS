@@ -1,11 +1,11 @@
 <%- include("partials/header") -%>
 
 <h1>Home</h1>
-<p><%= startingContent %></p>
+<p class="para-font"><%= startingContent %></p>
 
 <% postsArray.forEach(function(post){ %>
-    <h1><%= post.title %></h1>
-    <p><%= post.content.substring(0, 200) +"..."%>
+    <h1 class="para-heading"><%= post.title %></h1>
+    <p class="para-font"><%= post.content.substring(0, 500) +"..."%>
         <a href="/posts/<%=post._id%>">Read More</a>
     </p>
 <% }); %>
