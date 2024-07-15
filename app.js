@@ -81,15 +81,12 @@ app.post("/compose", async function (req, res) {
       title: req.body.postTitle,
       content: req.body.postBody
     });
-    
+
     res.redirect("/");
 
   } catch (error) {
     console.error(error);
   }
-
-
-  res.redirect("/");
 });
 
 app.get("/posts/:postId", async function (req, res) {
