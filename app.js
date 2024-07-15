@@ -40,6 +40,12 @@ const Post = mongoose.model("Post", postSchema);
 app.get("/", async function (req, res) {
   try {
     const posts = await Post.find();
+
+    if (!posts) {
+      res.render("home", {
+        startingContent: homeStartingContent,
+      });
+    }
     // console.log(posts);
     res.render("home", {
       startingContent: homeStartingContent,
@@ -90,7 +96,10 @@ app.get("/posts/:postId", async function (req, res) {
     const requestedPostId = req.params.postId;
 
     const posts = await Post.findOne({_id: requestedPostId});
-    await posts.save();
+
+    if (!posts) {
+      return res.status(404).send("Post not found");
+    }
     // console.log(posts);
     // console.log(posts.title);
     res.render("post", {
