@@ -77,12 +77,13 @@ app.get("/test", function (req, res) {
 
 app.post("/compose", async function (req, res) {
   try {
-    const post = new Post({
+    await Post.create({
       title: req.body.postTitle,
       content: req.body.postBody
     });
-    await post.save();
+    
     res.redirect("/");
+
   } catch (error) {
     console.error(error);
   }
